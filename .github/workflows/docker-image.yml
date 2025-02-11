@@ -2,6 +2,10 @@ name: Docker Build and Push  # 工作流程的名称
 
 on:
   workflow_dispatch:  # 添加手动触发事件，可在 Actions 页面手动触发执行
+  workflow_run:
+    workflows: ["Upstream Sync"]  # 监听 "Upstream Sync" 工作流
+    types:
+      - completed  # 在 Upstream Sync 完成后触发
 
 jobs:
   build:
